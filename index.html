@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh Tuyết Coffee - Trọn Vẹn Hương Vị Đất Trời</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-brown: #5D4037;
+            --brand-light: #8D6E63;
+            --brand-dark: #3E2723;
+            --bg-cream: #FFF8E1;
+            --bg-section: #FDFBF7;
+            --text-dark: #2C1E16;
+            --accent-gold: #C5A059;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background-color: #FAFAFA;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 10px 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--brand-brown) !important;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            height: 50px; 
+            width: auto; 
+            margin-right: 12px;
+        }
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+        }
+        .btn-brand {
+            background-color: var(--brand-brown);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 4px; 
+            transition: all 0.3s;
+            border: 2px solid var(--brand-brown);
+            font-weight: 500;
+        }
+        .btn-brand:hover {
+            background-color: transparent;
+            color: var(--brand-brown);
+        }
+        .btn-outline-brand {
+            border: 2px solid var(--brand-brown);
+            color: var(--brand-brown);
+            padding: 10px 25px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .btn-outline-brand:hover {
+            background-color: var(--brand-brown);
+            color: white;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(
+                to right, 
+                rgba(255, 248, 225, 0.98) 0%,    
+                rgba(255, 248, 225, 0.85) 45%,   
+                rgba(255, 248, 225, 0.2) 100%    
+            ), url('arabica 100_.jpg');          
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes floatImage {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); } 
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-img {
+            filter: drop-shadow(-10px 15px 20px rgba(62, 39, 35, 0.4));
+            transition: 0.5s;
+            height: 80vh; 
+            width: 100%;
+            object-fit: contain; 
+            object-position: center;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.05); 
+            filter: drop-shadow(-15px 20px 30px rgba(62, 39, 35, 0.5));
+            animation-play-state: paused; 
+        }
+
+        /* --- Animations cho Icon --- */
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .icon-hover-effect {
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+        /* Áp dụng hiệu ứng nhảy khi hover vào thẻ cha chứa icon */
+        .benefit-card:hover .icon-hover-effect i,
+        .feature-card:hover .icon-hover-effect i,
+        .hover-bounce:hover i {
+            animation: bounceIcon 0.6s ease-in-out infinite;
+            color: var(--accent-gold) !important;
+        }
+
+        /* --- Products Section --- */
+        .product-section {
+            background-color: var(--bg-section);
+            padding: 80px 0;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(93, 64, 55, 0.1);
+        }
+        
+        /* Hiệu ứng Kính lúp (Overlay) khi hover ảnh sản phẩm */
+        .product-img-wrapper {
+            height: 300px; 
+            overflow: hidden;
+            position: relative;
+            cursor: pointer; /* Biến con trỏ thành bàn tay bấm được */
+        }
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .img-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(93, 64, 55, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 2.5rem;
+            z-index: 2;
+        }
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+        .product-img-wrapper:hover .img-overlay {
+            opacity: 1;
+        }
+
+        .product-badge {
+            background-color: var(--accent-gold);
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .product-price {
+            font-size: 1.4rem;
+            color: var(--brand-brown);
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        .taste-tag {
+            background: #F5F0EB;
+            color: var(--brand-dark);
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* --- Modals (Popup xem ảnh) --- */
+        .modal-content {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .carousel-item img {
+            height: 60vh;
+            object-fit: contain;
+            background-color: #f8f9fa; /* Nền sáng xám để nổi bật ảnh */
+        }
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 20px;
+        }
+
+        /* --- Note Box --- */
+        .note-box {
+            background-color: #F8F5F0;
+            border-left: 4px solid var(--accent-gold);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--brand-dark);
+        }
+
+        /* --- Contact & Footer --- */
+        .contact-box-left {
+            background: var(--bg-cream);
+            padding: 40px;
+            border-radius: 12px 0 0 12px;
+        }
+        .contact-box-right {
+            background: var(--brand-brown);
+            color: white;
+            padding: 40px;
+            border-radius: 0 12px 12px 0;
+        }
+        footer {
+            background-color: var(--brand-dark);
+            color: #D7CCC8;
+            padding: 60px 0 20px;
+        }
+        footer h5 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- New B2B Solution Style --- */
+        /* Hoạt ảnh bounce icon khi tải trang hoặc hover */
+        @keyframes rotateOnce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .b2b-customer-icon {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .b2b-customer-card:hover .b2b-customer-icon i {
+            animation: bounceIcon 0.6s ease-in-out;
+            color: var(--brand-brown);
+        }
+
+        .b2b-offer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            height: 100%;
+            border: 1px solid #F0F0F0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            cursor: default;
+        }
+        .b2b-offer-card .offer-icon-wrapper {
+            transition: 0.3s ease;
+        }
+        .b2b-offer-card:hover {
+            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--brand-brown);
+        }
+        .b2b-offer-card:hover .offer-icon-wrapper {
+            transform: scale(1.1);
+        }
+        
+        /* Hiệu ứng nhấp nháy cho giá */
+        @keyframes glintPrice {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(150%); }
+        }
+        .glint-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .glint-effect::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: glintPrice 2s infinite ease-out;
+            transform: translateX(-150%);
+        }
+
+        @media (max-width: 991px) {
+            .hero-section {
+                padding: 120px 0 50px;
+                min-height: auto;
+                text-align: center;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(255, 248, 225, 0.98) 0%,
+                    rgba(255, 248, 225, 0.95) 100%
+                ), url('arabica 100_.jpg');
+            }
+            .hero-img {
+                height: auto; 
+                max-height: 450px; 
+                margin-top: 30px;
+                filter: drop-shadow(-5px 10px 15px rgba(62, 39, 35, 0.3));
+            }
+            .contact-box-left, .contact-box-right {
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+            .d-flex.gap-3 {
+                justify-content: center;
+            }
+            .carousel-item img {
+                height: 40vh; /* Thu nhỏ ảnh popup trên mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="LOGO.png" alt="">
+                MINH TUYẾT COFFEE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#about">Câu chuyện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact-form">Liên hệ</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-outline-brand"><i class="fas fa-comment-dots me-2"></i>Zalo: 0919.736.978</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-lg-6">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill">Thương hiệu cà phê Việt</span>
+                    <h1 class="display-4 fw-bold mb-4 text-dark" style="line-height: 1.2;">4 Năm Chắt Chiu <br> Cho Một Khoảnh Khắc <span style="color: var(--brand-brown);">Hoàn Hảo</span></h1>
+                    <p class="lead mb-5 text-dark" style="font-weight: 400; font-size: 1.15rem; line-height: 1.7;">
+                        Từ những hạt mầm ngủ yên trong đất đỏ đến hương thơm nồng nàn trên tay bạn. Chúng tôi không chỉ bán cà phê, chúng tôi trao gửi trọn vẹn hương vị của đất trời Việt Nam.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#products" class="btn btn-brand btn-lg px-4 py-3">Thưởng thức ngay</a>
+                        <a href="#about" class="btn btn-outline-brand btn-lg px-4 py-3">Xem câu chuyện</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+                    <img src="sp mau do.png" alt="Sản phẩm Minh Tuyết Coffee" class="img-fluid hero-img">
+                </div>
+                
+                <div class="col-12 d-lg-none mt-5">
+                     <img src="sp mau do.png" alt="Sản phẩm Minh Tuyết Coffee" class="img-fluid hero-img" style="height: auto; max-height: 500px;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-5 mt-4 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 hover-bounce">
+                    <img src="Herosection.jpg" alt="Hành trình cà phê Minh Tuyết" class="img-fluid rounded-4 shadow">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <span class="text-uppercase" style="color: var(--accent-gold); font-weight: 700; letter-spacing: 2px;">Triết Lý Kinh Doanh</span>
+                    <h2 class="serif-font mt-2 mb-4" style="font-size: 2.5rem; color: var(--brand-dark);">Hành Trình Của Hạt Cà Phê</h2>
+                    <p class="text-muted mb-5" style="font-size: 1.1rem; line-height: 1.8;">
+                        Gắn bó với những nông trại cà phê chất lượng nhất tại Việt Nam, Minh Tuyết Coffee cam kết kiểm soát nghiêm ngặt từ khâu thu hoạch đến khi rang xay. Mỗi mẻ rang là một nghệ thuật, mỗi tách cà phê là một lời cam kết về sự tận tâm để mang đến hương vị nguyên bản nhất cho khách hàng.
+                    </p>
+                    <a href="#products" class="btn btn-brand">Khám Phá Sản Phẩm</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="product-section">
+        <div class="container">
+            <div class="text-center mb-5 pb-3">
+                <h2 class="serif-font" style="font-size: 2.8rem; color: var(--brand-dark);">Khám Phá Hương Vị</h2>
+                <p class="text-muted mt-3">Lựa chọn dòng sản phẩm phù hợp nhất với gu thưởng thức của bạn.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-6">
+                    <div class="product-card d-flex flex-column">
+                        <div class="product-img-wrapper" data-bs-toggle="modal" data-bs-target="#modalProduct1" title="Bấm để xem chi tiết">
+                            <img src="ảnh cuoi sp mau trang.jpg" alt="Cà Phê Truyền Thống">
+                            <div class="img-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="mb-2"><span class="product-badge">Dòng Bình Dân</span></div>
+                            <h3 class="serif-font fw-bold mt-2">Cà Phê Truyền Thống <br><span class="fs-6 text-muted fw-normal">(Butter Roasted)</span></h3>
+                            <div class="product-price">240.000đ <span class="fs-6 text-muted fw-normal">/ 1kg</span></div>
+                            <p class="text-muted mb-4 flex-grow-1" style="font-size: 0.95rem; line-height: 1.6;">
+                                Sự kết hợp kinh điển giữa 80% Robusta mạnh mẽ và 20% Arabica thơm dịu, được rang tẩm cùng bơ thực vật cao cấp theo bí quyết xưa. Hạt cà phê bóng bẩy, khi pha phin cho nước màu nâu cánh gián đậm, độ sánh cao và hương thơm nồng nàn quyến rũ.
+                            </p>
+                            <div class="mb-3">
+                                <strong>Hương vị:</strong> <span class="taste-tag">Đắng đậm đà</span> <span class="taste-tag">Béo ngậy</span> <span class="taste-tag">Hậu vị ngọt sâu</span>
+                            </div>
+                            <div>
+                                <strong>Thích hợp:</strong> Pha phin, cà phê sữa đá lề đường, người nghiện gu "nặng đô".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="product-card d-flex flex-column">
+                        <div class="product-img-wrapper" data-bs-toggle="modal" data-bs-target="#modalProduct2" title="Bấm để xem chi tiết">
+                            <img src="sp mau do.png" alt="Cà Phê Đặc Biệt">
+                            <div class="img-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="mb-2"><span class="product-badge" style="background-color: #8D6E63;">Dòng Tiêu Chuẩn</span></div>
+                            <h3 class="serif-font fw-bold mt-2">Cà Phê Đặc Biệt <br><span class="fs-6 text-muted fw-normal">(Premium Blend)</span></h3>
+                            <div class="product-price">260.000đ <span class="fs-6 text-muted fw-normal">/ 1kg</span></div>
+                            <p class="text-muted mb-4 flex-grow-1" style="font-size: 0.95rem; line-height: 1.6;">
+                                Vẫn là tỷ lệ vàng 80/20 nhưng được xử lý tinh tế hơn với lượng bơ giảm đi một nửa. Quy trình này giúp hạt cà phê giữ được độ thơm béo vừa phải mà không làm át đi hương vị tự nhiên của hạt Arabica. Đây là dòng sản phẩm "quốc dân".
+                            </p>
+                            <div class="mb-3">
+                                <strong>Hương vị:</strong> <span class="taste-tag">Đắng dịu</span> <span class="taste-tag">Thơm thanh thoát</span> <span class="taste-tag">Béo nhẹ nhàng</span>
+                            </div>
+                            <div>
+                                <strong>Thích hợp:</strong> Cà phê văn phòng, pha phin gia đình, quà biếu tặng.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="product-card d-flex flex-column">
+                        <div class="product-img-wrapper" data-bs-toggle="modal" data-bs-target="#modalProduct3" title="Bấm để xem chi tiết">
+                            <img src="ảnh sp.png" alt="Cà Phê Rang Mộc">
+                            <div class="img-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="mb-2"><span class="product-badge" style="background-color: var(--brand-brown);">Dòng Cao Cấp</span></div>
+                            <h3 class="serif-font fw-bold mt-2">Cà Phê Rang Mộc <br><span class="fs-6 text-muted fw-normal">(Pure Roast)</span></h3>
+                            <div class="product-price">280.000đ <span class="fs-6 text-muted fw-normal">/ 1kg</span></div>
+                            <p class="text-muted mb-4 flex-grow-1" style="font-size: 0.95rem; line-height: 1.6;">
+                                Đỉnh cao của hương vị tự nhiên. Không bơ, không hương liệu, không chất độn. Chúng tôi để hạt cà phê "tự hát" lên bài ca của chính mình. Lựa chọn tốt nhất cho sức khỏe và bảo vệ máy xay/pha của bạn.
+                            </p>
+                            <div class="mb-3">
+                                <strong>Hương vị:</strong> <span class="taste-tag">Vị thanh</span> <span class="taste-tag">Ngọt tự nhiên kéo dài</span> <span class="taste-tag">Hương gỗ & trái cây khô</span>
+                            </div>
+                            <div>
+                                <strong>Thích hợp:</strong> Pha máy Espresso (không tắc máy), Pour-over, lối sống Healthy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="product-card d-flex flex-column" style="border: 1px solid var(--accent-gold);">
+                        <div class="product-img-wrapper" data-bs-toggle="modal" data-bs-target="#modalProduct4" title="Bấm để xem chi tiết">
+                            <img src="arabica 100_.jpg" alt="100% Arabica">
+                            <div class="img-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="mb-2"><span class="product-badge" style="background-color: #D4AF37;">Sản Phẩm Đặc Biệt</span></div>
+                            <h3 class="serif-font fw-bold mt-2">100% Arabica <br><span class="fs-6 text-muted fw-normal">(Specialty Grade)</span></h3>
+                            <div class="product-price">Liên hệ <span class="fs-6 text-muted fw-normal d-block mt-1" style="font-size: 0.8rem !important;">*Giá thay đổi theo mùa vụ và chất lượng hạt</span></div>
+                            <p class="text-muted mb-4 flex-grow-1" style="font-size: 0.95rem; line-height: 1.6;">
+                                <em>"Bản giao hưởng của hương hoa và vị trái cây nhiệt đới."</em><br>
+                                Được tuyển chọn khắt khe từ những vùng trồng cao nhất Việt Nam (Cầu Đất, Đà Lạt). Mang đến trải nghiệm tinh tế với vị chua thanh tao (acidity), hậu vị ngọt dịu và hương hoa cỏ nồng nàn.
+                            </p>
+                            <div class="mb-3">
+                                <strong>Quy trình:</strong> Rang Mộc (Light/Medium Roast) giữ trọn vẹn bản nguyên.
+                            </div>
+                            <div>
+                                <strong>Phù hợp nhất:</strong> Pha Drip (V60), Pour-over, Cold Brew hoặc Espresso nguyên bản.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="note-box shadow-sm hover-bounce">
+                        <h5 class="fw-bold mb-3" style="color: var(--brand-brown);">
+                            <span class="icon-hover-effect"><i class="fas fa-info-circle me-2"></i></span> Vì sao Rang Mộc lại có giá cao nhất?
+                        </h5>
+                        <p class="mb-2">Vì khi rang mộc, hạt cà phê nhẹ đi nhiều do mất nước (hao hụt trọng lượng thực tế lớn hơn). Ngược lại, rang bơ giúp hạt nặng hơn. <strong>Mua 1kg Rang Mộc nghĩa là bạn đang mua được nhiều hạt cà phê hơn so với 1kg Rang Bơ!</strong></p>
+                        <hr class="my-3 opacity-25">
+                        <p class="mb-0 text-danger" style="font-size: 0.9rem;"><strong>Lưu ý:</strong> Giá cung cấp ở trên là giá sỉ áp dụng từ 10kg trở lên. Nếu Quý khách có nhu cầu mua lẻ, vui lòng liên hệ để nhận báo giá chi tiết.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-center p-4 bg-white rounded shadow-sm hover-bounce benefit-card">
+                        <span class="icon-hover-effect"><i class="fas fa-blender fa-3x me-4" style="color: var(--brand-light);"></i></span>
+                        <div>
+                            <h4 class="serif-font fw-bold mb-1">Máy Pha Cà Phê</h4>
+                            <p class="mb-0 text-muted">Setup trọn gói cho quán, nhà hàng. <a href="#contact-form" class="text-decoration-none fw-bold" style="color: var(--accent-gold);">Liên hệ ngay</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-center p-4 bg-white rounded shadow-sm hover-bounce benefit-card">
+                        <span class="icon-hover-effect"><i class="fas fa-box-open fa-3x me-4" style="color: var(--brand-light);"></i></span>
+                        <div>
+                            <h4 class="serif-font fw-bold mb-1">Đường Gói Tiện Lợi</h4>
+                            <p class="mb-0 text-muted">Sản xuất và in ấn logo theo yêu cầu. <a href="#contact-form" class="text-decoration-none fw-bold" style="color: var(--accent-gold);">Liên hệ ngay</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="b2b-solutions" class="py-5" style="position: relative; background-image: linear-gradient(rgba(248, 245, 240, 0.94), rgba(248, 245, 240, 0.94)), url('arabica 100_.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="container py-5" style="position: relative; z-index: 1;">
+            <div class="row align-items-center mb-5 pb-3">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="text-uppercase serif-font fw-bold display-3" style="color: var(--brand-brown); letter-spacing: 2px;">GIẢI PHÁP CÀ PHÊ SỈ TOÀN DIỆN</h2>
+                    <h3 class="serif-font mt-3" style="font-size: 2.2rem; color: var(--brand-dark);">Tối Ưu Kinh Doanh Cùng Minh Tuyết Coffee B2B</h3>
+                    <p class="text-muted mt-4 mb-5" style="font-size: 1.25rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.6;">Chúng tôi mang đến giải pháp cà phê sỉ chuyên nghiệp, linh hoạt, giúp bạn tối ưu chi phí và nâng tầm chất lượng cho quán, chuỗi, nhà hàng, khách sạn và văn phòng của mình.</p>
+                </div>
+            </div>
+
+            <div class="row g-3 justify-content-center mb-5">
+                <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <div class="p-4 b2b-customer-card h-100 hover-bounce" style="background: white; border-radius: 12px; border: 1px solid #eee;">
+                        <span class="b2b-customer-icon mb-3"><i class="fas fa-coffee fa-3x" style="color: var(--accent-gold);"></i></span>
+                        <h5 class="serif-font fw-bold mt-2 mb-1">Quán Cà Phê</h5>
+                        <p class="small text-muted mb-0">(Shop Coffee)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <div class="p-4 b2b-customer-card h-100 hover-bounce" style="background: white; border-radius: 12px; border: 1px solid #eee;">
+                        <span class="b2b-customer-icon mb-3"><i class="fas fa-store-alt fa-3x" style="color: var(--accent-gold);"></i></span>
+                        <h5 class="serif-font fw-bold mt-2 mb-1">Chuỗi Coffee & Tea</h5>
+                        <p class="small text-muted mb-0">(Coffee & Tea Chain)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <div class="p-4 b2b-customer-card h-100 hover-bounce" style="background: white; border-radius: 12px; border: 1px solid #eee;">
+                        <span class="b2b-customer-icon mb-3"><i class="fas fa-utensils fa-3x" style="color: var(--accent-gold);"></i></span>
+                        <h5 class="serif-font fw-bold mt-2 mb-1">Nhà Hàng & Khách Sạn</h5>
+                        <p class="small text-muted mb-0">(Restaurant & Hotel)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <div class="p-4 b2b-customer-card h-100 hover-bounce" style="background: white; border-radius: 12px; border: 1px solid #eee;">
+                        <span class="b2b-customer-icon mb-3"><i class="fas fa-laptop-house fa-3x" style="color: var(--accent-gold);"></i></span>
+                        <h5 class="serif-font fw-bold mt-2 mb-1">Văn Phòng</h5>
+                        <p class="small text-muted mb-0">(Office)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-compass fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Setup Quán</h5>
+                            <p class="text-muted mb-0 small">Tư vấn chuyên sâu, tối ưu không gian.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-gift fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Mẫu Thử Miễn Phí</h5>
+                            <p class="text-muted mb-0 small">Nếm thử hương vị trước khi quyết định.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-cogs fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Rang Xay Tùy Chọn</h5>
+                            <p class="text-muted mb-0 small">Tùy chỉnh hương vị theo gu của bạn.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-shipping-fast fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Giao Hàng Miễn Phí</h5>
+                            <p class="text-muted mb-0 small">Nhanh chóng, tiết kiệm tối đa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-percent fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Chiết Khấu Cao</h5>
+                            <p class="text-muted mb-0 small">Giá sỉ cạnh tranh, linh hoạt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="b2b-offer-card shadow-sm hover-bounce">
+                        <div class="offer-icon-wrapper me-4"><i class="fas fa-bullhorn fa-2x" style="color: var(--brand-brown);"></i></div>
+                        <div>
+                            <h5 class="serif-font fw-bold mb-1">Hỗ Trợ Marketing</h5>
+                            <p class="text-muted mb-0 small">Cùng bạn quảng bá thương hiệu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-0 mt-5 pt-4 justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="b2b-pricing-card p-5 text-center text-white glint-effect hover-bounce" style="background: linear-gradient(135deg, var(--brand-brown), var(--brand-dark)); border-radius: 12px;">
+                        <span class="text-uppercase small mb-2 d-block opacity-75">GIÁ SỈ CỰC TỐT</span>
+                        <h3 class="display-3 fw-bolder" style="color: var(--accent-gold);">Chỉ từ 2XX.XXXđ/kg</h3>
+                        <p class="lead opacity-75 mb-4">Áp dụng cho đơn hàng từ 10kg. Liên hệ ngay để có báo giá chi tiết theo sản lượng của bạn.</p>
+                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-warning btn-lg px-5 py-3 shadow hover-bounce mt-2 text-dark fw-bold rounded">
+                            <i class="fas fa-comment-dots me-2"></i> ZALO NGAY ĐỂ NHẬN BÁO GIÁ
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="contact-form" class="py-5" style="background-color: white;">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="serif-font" style="font-size: 2.5rem; color: var(--brand-dark);">Nhận Thông Tin Tư Vấn Miễn Phí</h2>
+                <p class="text-muted mt-2">Để lại thông tin, đội ngũ Minh Tuyết Coffee sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+            </div>
+            <div class="row g-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="col-lg-7 contact-box-left">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Họ và Tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Số Điện Thoại / Zalo <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" placeholder="09xx xxx xxx">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" class="form-control" placeholder="email@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nhu cầu của bạn</label>
+                            <textarea class="form-control" rows="4" placeholder="Ví dụ: Tôi muốn hỏi giá sỉ Cà Phê Rang Mộc..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-brand w-100 py-3 fw-bold fs-5 mt-2">Gửi Thông Tin <i class="fas fa-paper-plane ms-2"></i></button>
+                    </form>
+                </div>
+                <div class="col-lg-5 contact-box-right d-flex flex-column justify-content-center">
+                    <h3 class="serif-font mb-4">Thông Tin Liên Hệ</h3>
+                    
+                    <div class="contact-info-item hover-bounce">
+                        <span class="icon-hover-effect"><i class="fas fa-phone-volume"></i></span>
+                        <div>
+                            <h6 class="mb-0">Hotline</h6>
+                            <p class="mb-0 opacity-75 fs-5 fw-bold">0903.649.667</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item hover-bounce">
+                        <span class="icon-hover-effect"><i class="fas fa-comment-dots"></i></span>
+                        <div>
+                            <h6 class="mb-0">Zalo</h6>
+                            <p class="mb-0 opacity-75 fs-5 fw-bold">0919.736.978</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item hover-bounce">
+                        <span class="icon-hover-effect"><i class="fas fa-envelope"></i></span>
+                        <div>
+                            <h6 class="mb-0">Gmail</h6>
+                            <p class="mb-0 opacity-75">minhtuyet.coffee@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item hover-bounce">
+                        <span class="icon-hover-effect"><i class="fas fa-map-marker-alt"></i></span>
+                        <div>
+                            <h6 class="mb-0">Địa Chỉ VPĐD</h6>
+                            <p class="mb-0 opacity-75">881/12 Cách Mạng Tháng 8, Phường Thủ Dầu Một, TP Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item hover-bounce">
+                        <span class="icon-hover-effect"><i class="fas fa-file-invoice-dollar"></i></span>
+                        <div>
+                            <h6 class="mb-0">Mã Số Thuế (MST)</h6>
+                            <p class="mb-0 opacity-75">074176000583</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-mug-hot me-2"></i>MINH TUYẾT COFFEE</h5>
+                    <p class="small opacity-75 pe-md-4">Từ những hạt mầm ngủ yên trong đất đỏ đến hương thơm nồng nàn trên tay bạn. Chúng tôi trao gửi trọn vẹn hương vị của đất trời Việt Nam.</p>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-3">Liên Kết Nhanh</h5>
+                    <a href="#about">Câu chuyện thương hiệu</a>
+                    <a href="#products">Cà phê nguyên chất</a>
+                    <a href="#products">Máy pha cà phê</a>
+                    <a href="#contact-form">Nhận báo giá sỉ</a>
+                </div>
+                <div class="col-lg-5 mb-4">
+                    <h5 class="mb-3">Liên Hệ</h5>
+                    <p class="small mb-2"><i class="fas fa-phone me-2"></i> Hotline: 0903.649.667 | Zalo: 0919.736.978</p>
+                    <p class="small mb-2"><i class="fas fa-envelope me-2"></i> minhtuyet.coffee@gmail.com</p>
+                    <p class="small mb-2"><i class="fas fa-map-marker-alt me-2"></i> 881/12 Cách Mạng Tháng 8, P. Thủ Dầu Một, TP.HCM</p>
+                    <p class="small"><i class="fas fa-file-invoice-dollar me-2"></i> MST: 074176000583</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 mt-4">
+            <div class="text-center small opacity-50 pt-3">
+                &copy; 2026 Minh Tuyết Coffee. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="modalProduct1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title serif-font fw-bold text-brown">Cà Phê Truyền Thống</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="carouselProduct1" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="ảnh cuoi sp mau trang.jpg" class="d-block w-100" alt="Mặt trước">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="mat sau cua trang.jpg" class="d-block w-100" alt="Mặt sau">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="trang.jpg" class="d-block w-100" alt="Chi tiết">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalProduct2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title serif-font fw-bold text-brown">Cà Phê Đặc Biệt</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="carouselProduct2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="sp mau do.png" class="d-block w-100" alt="Mặt trước">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Mat sau cua red bao bi.jpg" class="d-block w-100" alt="Mặt sau">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="red bao bi.jpg" class="d-block w-100" alt="Chi tiết">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalProduct3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title serif-font fw-bold text-brown">Cà Phê Rang Mộc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="carouselProduct3" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="ảnh sp.png" class="d-block w-100" alt="Mặt trước">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Blue.jpg" class="d-block w-100" alt="Chi tiết xanh">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="mặt sau blue.jpg" class="d-block w-100" alt="Mặt sau xanh">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct3" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct3" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalProduct4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title serif-font fw-bold text-brown">100% Arabica Specialty</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <img src="arabica 100_.jpg" class="d-block w-100" style="height: 60vh; object-fit: contain; background: #f8f9fa;" alt="Arabica">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
