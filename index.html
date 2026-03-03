@@ -134,10 +134,10 @@
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
         }
-        /* Áp dụng hiệu ứng nhảy khi hover vào thẻ cha chứa icon */
         .benefit-card:hover .icon-hover-effect i,
         .feature-card:hover .icon-hover-effect i,
-        .hover-bounce:hover i {
+        .hover-bounce:hover i,
+        .hover-bounce:hover img.zalo-icon-bounce {
             animation: bounceIcon 0.6s ease-in-out infinite;
             color: var(--accent-gold) !important;
         }
@@ -161,12 +161,11 @@
             box-shadow: 0 15px 40px rgba(93, 64, 55, 0.1);
         }
         
-        /* Hiệu ứng Kính lúp (Overlay) khi hover ảnh sản phẩm */
         .product-img-wrapper {
             height: 300px; 
             overflow: hidden;
             position: relative;
-            cursor: pointer; /* Biến con trỏ thành bàn tay bấm được */
+            cursor: pointer;
         }
         .product-img-wrapper img {
             width: 100%;
@@ -221,7 +220,6 @@
             margin-bottom: 5px;
         }
 
-        /* --- Modals (Popup xem ảnh) --- */
         .modal-content {
             border: none;
             border-radius: 12px;
@@ -230,7 +228,7 @@
         .carousel-item img {
             height: 60vh;
             object-fit: contain;
-            background-color: #f8f9fa; /* Nền sáng xám để nổi bật ảnh */
+            background-color: #f8f9fa;
         }
         .carousel-control-prev-icon, .carousel-control-next-icon {
             background-color: rgba(0,0,0,0.5);
@@ -238,7 +236,6 @@
             padding: 20px;
         }
 
-        /* --- Note Box --- */
         .note-box {
             background-color: #F8F5F0;
             border-left: 4px solid var(--accent-gold);
@@ -270,12 +267,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- New B2B Solution Style --- */
-        /* Hoạt ảnh bounce icon khi tải trang hoặc hover */
-        @keyframes rotateOnce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
         .b2b-customer-icon {
             transition: transform 0.3s ease;
             display: inline-block;
@@ -310,7 +301,6 @@
             transform: scale(1.1);
         }
         
-        /* Hiệu ứng nhấp nháy cho giá */
         @keyframes glintPrice {
             0% { transform: translateX(-150%); }
             100% { transform: translateX(150%); }
@@ -358,7 +348,7 @@
                 justify-content: center;
             }
             .carousel-item img {
-                height: 40vh; /* Thu nhỏ ảnh popup trên mobile */
+                height: 40vh;
             }
         }
     </style>
@@ -380,7 +370,9 @@
                     <li class="nav-item"><a class="nav-link" href="#products">Sản phẩm</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact-form">Liên hệ</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-outline-brand"><i class="fas fa-comment-dots me-2"></i>Zalo: 0919.736.978</a>
+                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-outline-brand d-inline-flex align-items-center">
+                            <img src="zalo-logo.png" alt="Zalo" style="width: 22px; height: 22px; object-fit: contain;" class="me-2 rounded-circle">Zalo: 0919.736.978
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -672,10 +664,10 @@
                 <div class="col-md-10 col-lg-8">
                     <div class="b2b-pricing-card p-5 text-center text-white glint-effect hover-bounce" style="background: linear-gradient(135deg, var(--brand-brown), var(--brand-dark)); border-radius: 12px;">
                         <span class="text-uppercase small mb-2 d-block opacity-75">GIÁ SỈ CỰC TỐT</span>
-                        <h3 class="display-3 fw-bolder" style="color: var(--accent-gold);">Chỉ từ 2XX.XXXđ/kg</h3>
+                        <h3 class="display-3 fw-bolder" style="color: var(--accent-gold);">Chỉ từ 8X.XXXđ/kg</h3>
                         <p class="lead opacity-75 mb-4">Áp dụng cho đơn hàng từ 10kg. Liên hệ ngay để có báo giá chi tiết theo sản lượng của bạn.</p>
-                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-warning btn-lg px-5 py-3 shadow hover-bounce mt-2 text-dark fw-bold rounded">
-                            <i class="fas fa-comment-dots me-2"></i> ZALO NGAY ĐỂ NHẬN BÁO GIÁ
+                        <a href="https://zalo.me/0919736978" target="_blank" class="btn btn-warning btn-lg px-5 py-3 shadow mt-2 text-dark fw-bold rounded d-inline-flex align-items-center justify-content-center" style="transition: 0.3s ease;">
+                            <img src="zalo-logo.png" alt="Zalo" style="width: 28px; height: 28px; object-fit: contain;" class="me-2 rounded-circle"> ZALO NGAY ĐỂ NHẬN BÁO GIÁ
                         </a>
                     </div>
                 </div>
@@ -683,6 +675,7 @@
 
         </div>
     </section>
+
     <section id="contact-form" class="py-5" style="background-color: white;">
         <div class="container py-5">
             <div class="text-center mb-5">
@@ -691,22 +684,22 @@
             </div>
             <div class="row g-0 shadow-lg rounded-4 overflow-hidden">
                 <div class="col-lg-7 contact-box-left">
-                    <form>
+                    <form action="https://formspree.io/f/meelbvnn" method="POST">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Họ và Tên <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+                            <input type="text" name="HoTen" class="form-control" placeholder="Nguyễn Văn A" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Số Điện Thoại / Zalo <span class="text-danger">*</span></label>
-                            <input type="tel" class="form-control" placeholder="09xx xxx xxx">
+                            <input type="tel" name="SoDienThoai" class="form-control" placeholder="09xx xxx xxx" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Email</label>
-                            <input type="email" class="form-control" placeholder="email@example.com">
+                            <input type="email" name="email" class="form-control" placeholder="email@example.com">
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nhu cầu của bạn</label>
-                            <textarea class="form-control" rows="4" placeholder="Ví dụ: Tôi muốn hỏi giá sỉ Cà Phê Rang Mộc..."></textarea>
+                            <textarea name="NhuCau" class="form-control" rows="4" placeholder="Ví dụ: Tôi muốn hỏi giá sỉ Cà Phê Rang Mộc..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-brand w-100 py-3 fw-bold fs-5 mt-2">Gửi Thông Tin <i class="fas fa-paper-plane ms-2"></i></button>
                     </form>
@@ -714,40 +707,42 @@
                 <div class="col-lg-5 contact-box-right d-flex flex-column justify-content-center">
                     <h3 class="serif-font mb-4">Thông Tin Liên Hệ</h3>
                     
-                    <div class="contact-info-item hover-bounce">
-                        <span class="icon-hover-effect"><i class="fas fa-phone-volume"></i></span>
+                    <div class="contact-info-item hover-bounce d-flex align-items-center mb-4">
+                        <span class="icon-hover-effect me-4"><i class="fas fa-phone-volume fa-2x"></i></span>
                         <div>
                             <h6 class="mb-0">Hotline</h6>
                             <p class="mb-0 opacity-75 fs-5 fw-bold">0903.649.667</p>
                         </div>
                     </div>
                     
-                    <div class="contact-info-item hover-bounce">
-                        <span class="icon-hover-effect"><i class="fas fa-comment-dots"></i></span>
+                    <div class="contact-info-item hover-bounce d-flex align-items-center mb-4">
+                        <span class="icon-hover-effect b2b-customer-icon me-4">
+                            <img src="zalo-logo.png" alt="Zalo" class="zalo-icon-bounce rounded-circle" style="width: 32px; height: 32px; object-fit: contain;">
+                        </span>
                         <div>
                             <h6 class="mb-0">Zalo</h6>
                             <p class="mb-0 opacity-75 fs-5 fw-bold">0919.736.978</p>
                         </div>
                     </div>
 
-                    <div class="contact-info-item hover-bounce">
-                        <span class="icon-hover-effect"><i class="fas fa-envelope"></i></span>
+                    <div class="contact-info-item hover-bounce d-flex align-items-center mb-4">
+                        <span class="icon-hover-effect me-4"><i class="fas fa-envelope fa-2x"></i></span>
                         <div>
                             <h6 class="mb-0">Gmail</h6>
                             <p class="mb-0 opacity-75">minhtuyet.coffee@gmail.com</p>
                         </div>
                     </div>
 
-                    <div class="contact-info-item hover-bounce">
-                        <span class="icon-hover-effect"><i class="fas fa-map-marker-alt"></i></span>
+                    <div class="contact-info-item hover-bounce d-flex align-items-center mb-4">
+                        <span class="icon-hover-effect me-4"><i class="fas fa-map-marker-alt fa-2x"></i></span>
                         <div>
                             <h6 class="mb-0">Địa Chỉ VPĐD</h6>
-                            <p class="mb-0 opacity-75">881/12 Cách Mạng Tháng 8, Phường Thủ Dầu Một, TP Hồ Chí Minh, Việt Nam</p>
+                            <p class="mb-0 opacity-75">881/12 Cách Mạng Tháng 8, P. Thủ Dầu Một, TP HCM</p>
                         </div>
                     </div>
 
-                    <div class="contact-info-item hover-bounce">
-                        <span class="icon-hover-effect"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <div class="contact-info-item hover-bounce d-flex align-items-center">
+                        <span class="icon-hover-effect me-4"><i class="fas fa-file-invoice-dollar fa-2x"></i></span>
                         <div>
                             <h6 class="mb-0">Mã Số Thuế (MST)</h6>
                             <p class="mb-0 opacity-75">074176000583</p>
@@ -767,14 +762,17 @@
                 </div>
                 <div class="col-lg-3 mb-4">
                     <h5 class="mb-3">Liên Kết Nhanh</h5>
-                    <a href="#about">Câu chuyện thương hiệu</a>
-                    <a href="#products">Cà phê nguyên chất</a>
-                    <a href="#products">Máy pha cà phê</a>
-                    <a href="#contact-form">Nhận báo giá sỉ</a>
+                    <a href="#about" class="text-white opacity-75 text-decoration-none d-block mb-2">Câu chuyện thương hiệu</a>
+                    <a href="#products" class="text-white opacity-75 text-decoration-none d-block mb-2">Cà phê nguyên chất</a>
+                    <a href="#products" class="text-white opacity-75 text-decoration-none d-block mb-2">Máy pha cà phê</a>
+                    <a href="#contact-form" class="text-white opacity-75 text-decoration-none d-block">Nhận báo giá sỉ</a>
                 </div>
                 <div class="col-lg-5 mb-4">
                     <h5 class="mb-3">Liên Hệ</h5>
-                    <p class="small mb-2"><i class="fas fa-phone me-2"></i> Hotline: 0903.649.667 | Zalo: 0919.736.978</p>
+                    <p class="small mb-2 d-flex align-items-center">
+                        <i class="fas fa-phone me-2"></i> Hotline: 0903.649.667 | 
+                        <img src="zalo-logo.png" alt="Zalo" class="rounded-circle mx-1" style="width: 14px; height: 14px;"> Zalo: 0919.736.978
+                    </p>
                     <p class="small mb-2"><i class="fas fa-envelope me-2"></i> minhtuyet.coffee@gmail.com</p>
                     <p class="small mb-2"><i class="fas fa-map-marker-alt me-2"></i> 881/12 Cách Mạng Tháng 8, P. Thủ Dầu Một, TP.HCM</p>
                     <p class="small"><i class="fas fa-file-invoice-dollar me-2"></i> MST: 074176000583</p>
@@ -809,11 +807,9 @@
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct1" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct1" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
